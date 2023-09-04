@@ -8,9 +8,14 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+
+import styles from "./tailwind.css";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  { rel: "stylesheet", href: styles },
 ];
 
 export default function App() {
@@ -23,8 +28,17 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h2>ROOT</h2>
-        <Outlet />
+        <div className="page">
+          <main className="flex flex-col flex-grow min-h-[90vh]">
+            <Header />
+            <Outlet />
+          </main>
+          <div className="section dark">
+            <div className="container">
+              <Footer />
+            </div>
+          </div>
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

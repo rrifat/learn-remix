@@ -1,4 +1,5 @@
 import { useLoaderData } from "@remix-run/react";
+import { ProductCard } from "~/components/Product";
 import { buildDbClient } from "~/lib/client";
 import type { Category, Product } from "~/lib/types";
 
@@ -20,14 +21,23 @@ export const loader = async () => {
 };
 
 export default function Home() {
-  const data = useLoaderData<typeof loader>();
+  const { featuredProducts } = useLoaderData<typeof loader>();
 
   return (
-    <div>
-      <h2>Products</h2>
-      <pre>{JSON.stringify(data.featuredProducts, null, 2)}</pre>
-      <h2>Categories</h2>
-      <pre>{JSON.stringify(data.featuredCategories, null, 2)}</pre>
+    <div className="flex flex-col space-x-4 space-y-4 px-4">
+      <h3 className="font-semibold">Featured Products</h3>
+
+      {featuredProducts.length ? (
+        <ul className="mt-4 grid gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+          {featuredProducts.map((product: Product) => (
+            <ProductCard {...{ product }} key={product.id} />
+          ))}
+        </ul>
+      ) : (
+        <div className="p-4 flex justify-center">
+          There are no available products, please check back later!
+        </div>
+      )}
     </div>
   );
 }
