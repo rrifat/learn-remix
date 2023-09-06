@@ -6,7 +6,7 @@ export const Footer = () => {
         <a
           href="https://remix.run/"
           target="_blank"
-          className=""
+          className="text-zinc-500"
           rel="noreferrer"
         >
           Remix
@@ -19,15 +19,6 @@ export const Footer = () => {
           rel="noreferrer"
         >
           Turso
-        </a>
-        {". Hosted on "}
-        <a
-          href="https://developers.cloudflare.com/workers/"
-          target="_blank"
-          className="text-orange-500"
-          rel="noreferrer"
-        >
-          Cloudflare Workers
         </a>
       </span>
     </footer>

@@ -29,7 +29,7 @@ export default function Home() {
 
       {featuredProducts.length ? (
         <ul className="mt-4 grid gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-          {featuredProducts.map((product: Product) => (
+          {featuredProducts.map((product) => (
             <ProductCard {...{ product }} key={product.id} />
           ))}
         </ul>
